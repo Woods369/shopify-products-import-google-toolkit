@@ -1,3 +1,5 @@
+![Alt text](google-ico.svg)
+
 ###### SHOPIFY PRODUCTS IMPORT TOOLKIT
 
 # Welcome
