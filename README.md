@@ -1,4 +1,6 @@
-## SHOPIFY PRODUCTS IMPORT TOOLKIT
+![Alt text](google-ico.svg)
+
+###### SHOPIFY PRODUCTS IMPORT TOOLKIT
 
 # Welcome
 
