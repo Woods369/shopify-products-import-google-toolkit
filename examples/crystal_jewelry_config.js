@@ -16,6 +16,7 @@ const CRYSTAL_JEWELRY_CONFIG = {
     comparePrice: -1
   },
   
+  
   categoryRules: [
     {
       keywords: ["necklace", "pendant"],
