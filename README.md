@@ -1,26 +1,22 @@
-![Alt text](google-ico.svg)
-
 ###### SHOPIFY PRODUCTS IMPORT TOOLKIT
 
-# Welcome
+# W E L C O M E
 
-Configurable Google Apps Script for importing any vendor data into Shopify with smart mapping, duplicate prevention, and automated categorization.
-
-Transform any vendor product data into Shopify-ready CSV imports with just a configuration change. No more manual formatting, duplicate imports, or missing product categories.
+_**Google Apps Script** for importing vendor data into **Shopify Products**._
 
 ## Key Features
 
-- Universal Compatibility - Works with any CSV column structure
-- Smart Duplicate Prevention - Never overwrites existing products  
-- Automatic Categorization - Intelligent product categorization and tagging
-- Template Library - Pre-built templates for common business types
+- Fully customisable.
+- Duplicate Prevention - **Never** overwrites existing products in your .csv [^1] 
+- Supports **Shopify Product categories**.
+- Template Library - Pre-built templates.
 - Zero Vendor Lock-in - Generic, reusable for any supplier
 - Safe Operations - Extensive validation and error handling
 - Detailed Logging - Know exactly what happened during import
 
 ## Quick Start
 
-### 1. Choose Your Template
+### 1. Choose a Template _or_ use your own.
 
 | Business Type | Template File | Configuration Example |
 |---------------|---------------|----------------------|
@@ -186,3 +182,5 @@ This project is open source and available under the MIT License. Use it, modify 
 - Examples: See the examples/ folder
 
 Transform your vendor imports today!
+
+[^1]: Accept a paremeter to customise item quantiy acceptance.
