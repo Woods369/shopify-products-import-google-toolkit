@@ -1,5 +1,4 @@
 ###### SHOPIFY PRODUCTS IMPORT TOOLKIT
-
 # W E L C O M E
 
 _**Google Apps Script** for importing vendor data into **Shopify Products**._
@@ -9,10 +8,10 @@ _**Google Apps Script** for importing vendor data into **Shopify Products**._
 - Fully customisable.
 - Duplicate Prevention - **Never** overwrites existing products in your .csv [^1] 
 - Supports **Shopify Product categories**.
-- Template Library - Pre-built templates.
-- Zero Vendor Lock-in - Generic, reusable for any supplier
-- Safe Operations - Extensive validation and error handling
-- Detailed Logging - Know exactly what happened during import
+- Template Library - **Pre-built** templates.
+- Zero Vendor Lock-in - Any Vendor / Manufacturer.
+- Safe Operations - Validation and error handling.
+- Detailed Logging - Know exactly what happened during every import.
 
 ## Quick Start
 
