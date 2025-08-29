@@ -1,23 +1,26 @@
 /**
  * SHOPIFY PRODUCTS IMPORT TOOLKIT v1.1.0 - Resource-Optimized Edition
  * 
- * KEY IMPROVEMENTS FROM v1.0.0:
- * ✅ Batch processing (50 rows at a time) - prevents RESOURCE_EXHAUSTED
- * ✅ Memory management with automatic cleanup
- * ✅ Resume capability after interruption
- * ✅ Enhanced error handling with specific messages  
- * ✅ Configuration validation tools
- * ✅ Progress tracking and status monitoring
- * ✅ Fixed README alignment (columnMappings vs columnMapping)
- */
+ * KEY IMPROVEMENTS FROM v1.0.0 ( Test-0 ):
+ * Batch processing (50 rows at a time) - prevents RESOURCE_EXHAUSTED
+ * Memory management with automatic cleanup
+ * Resume capability after interruption
+ * Enhanced error handling with specific messages  
+ * Configuration validation tools
+ * Progress tracking and status monitoring
+ * Fixed README alignment (columnMappings vs columnMapping)
+ * */
 
 const VENDOR_CONFIG = {
   vendor: "Crystal Test Co",
   sourceSheet: "VendorOrder",         // MUST match your sheet name exactly
   targetSheet: "shopify_products", 
   
-  // NEW: Performance settings
-  batchSize: 50,                     // Process 50 rows at a time
+  /** Performance settings 
+   *  Do not change these unless you hit 'RESOURCE_EXHAUSTED' error )
+   * */
+
+  batchSize: 50,                     // Amount of rows processed at a time
   debugMode: true,                   // Enable detailed logging
   resumeOnError: true,               // Resume after errors
   
@@ -36,17 +39,17 @@ const VENDOR_CONFIG = {
 // Main function - now with batch processing
 function importVendorProducts() {
   try {
-    console.log("🚀 Starting v1.1.0 - Batch Processing Edition");
+    console.log("Starting v1.1.0 - Batch Processing Edition");
     
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const sourceSheet = ss.getSheetByName(VENDOR_CONFIG.sourceSheet);
     
     if (!sourceSheet) {
-      throw new Error(`❌ Source sheet "${VENDOR_CONFIG.sourceSheet}" not found!`);
+      throw new Error(` Source sheet "${VENDOR_CONFIG.sourceSheet}" not found!`);
     }
     
     const totalRows = sourceSheet.getLastRow() - 1;
-    console.log(`📊 Processing ${totalRows} rows in batches of ${VENDOR_CONFIG.batchSize}`);
+    console.log(` Processing ${totalRows} rows in batches of ${VENDOR_CONFIG.batchSize}`);
     
     let targetSheet = ss.getSheetByName(VENDOR_CONFIG.targetSheet);
     if (!targetSheet) {
@@ -61,7 +64,7 @@ function importVendorProducts() {
       const endRow = Math.min(startRow + VENDOR_CONFIG.batchSize - 1, totalRows + 1);
       const batchSize = endRow - startRow + 1;
       
-      console.log(`📦 Batch: rows ${startRow}-${endRow} (${batchSize} rows)`);
+      console.log(` Batch: rows ${startRow}-${endRow} (${batchSize} rows)`);
       
       // Load only current batch (memory optimization)
       const batchData = sourceSheet.getRange(startRow, 1, batchSize, sourceSheet.getLastColumn()).getValues();
@@ -75,32 +78,32 @@ function importVendorProducts() {
           .setValues(shopifyRows);
         
         processedCount += shopifyRows.length;
-        console.log(`✅ Batch complete: +${shopifyRows.length} products`);
+        console.log(` Batch complete: +${shopifyRows.length} products`);
         
         // Force write and clear memory
         SpreadsheetApp.flush();
       }
     }
     
-    console.log(`🎉 Import complete: ${processedCount} products imported`);
+    console.log(` Import complete: ${processedCount} products imported`);
     
     SpreadsheetApp.getUi().alert(
-      "Import Complete! 🎉",
-      `✅ Successfully imported ${processedCount} products\n\nNo RESOURCE_EXHAUSTED errors! 🚀`,
+      "Import Complete! ",
+      ` Successfully imported ${processedCount} products\n\nNo RESOURCE_EXHAUSTED errors! `,
       SpreadsheetApp.getUi().Button.OK
     );
     
     return processedCount;
     
   } catch (error) {
-    console.error("❌ Import failed:", error);
+    console.error(" Import failed:", error);
     
     let message = error.message;
     if (error.message.includes("RESOURCE_EXHAUSTED")) {
       message = "Resource limit hit - but v1.1.0 should prevent this! Please report this as a bug.";
     }
     
-    SpreadsheetApp.getUi().alert("Import Failed", `❌ ${message}`, SpreadsheetApp.getUi().Button.OK);
+    SpreadsheetApp.getUi().alert("Import Failed", ` ${message}`, SpreadsheetApp.getUi().Button.OK);
     throw error;
   }
 }
@@ -249,10 +252,10 @@ function initializeShopifySheet(sheet) {
 // Menu system
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu("🛍️ Shopify Import v1.1.0")
-    .addItem("🚀 Import Products", "importVendorProducts")
-    .addItem("🔧 Test Configuration", "testConfiguration") 
-    .addItem("❓ Help", "showHelp")
+    .createMenu(" Shopify Import v1.1.0")
+    .addItem(" Import Products", "importVendorProducts")
+    .addItem(" Test Configuration", "testConfiguration") 
+    .addItem(" Help", "showHelp")
     .addToUi();
 }
 
@@ -262,13 +265,13 @@ function testConfiguration() {
   
   if (sourceSheet) {
     SpreadsheetApp.getUi().alert(
-      "Configuration Test ✅",
+      "Configuration Test ",
       `Source sheet "${VENDOR_CONFIG.sourceSheet}" found with ${sourceSheet.getLastRow()} rows`,
       SpreadsheetApp.getUi().Button.OK
     );
   } else {
     SpreadsheetApp.getUi().alert(
-      "Configuration Test ❌", 
+      "Configuration Test ", 
       `Source sheet "${VENDOR_CONFIG.sourceSheet}" not found`,
       SpreadsheetApp.getUi().Button.OK
     );
@@ -277,17 +280,17 @@ function testConfiguration() {
 
 function showHelp() {
   const helpText = `
-🛍️ SHOPIFY IMPORT TOOLKIT v1.1.0
+  SHOPIFY IMPORT TOOLKIT v1.1.0
 
-📋 SETUP STEPS:
-1. Import your CSV data into a sheet named "VendorOrder" 
-2. Run "Test Configuration" to validate
-3. Run "Import Products" to process in batches
+  SETUP STEPS:
+  1. Import your CSV data into a sheet named "VendorOrder" 
+  2. Run "Test Configuration" to validate
+  3. Run "Import Products" to process in batches
 
-💡 NEW: Batch processing prevents RESOURCE_EXHAUSTED errors!
+  NEW: Batch processing prevents RESOURCE_EXHAUSTED errors!
 
-🔧 Configuration is at the top of the script.
-  `;
+  Configuration is at the top of the script.
+    `;
   
   SpreadsheetApp.getUi().alert("Help v1.1.0", helpText, SpreadsheetApp.getUi().Button.OK);
 }
